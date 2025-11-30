@@ -1,3 +1,11 @@
+server:
+    port: 8443
+    ssl:
+        key-store: classpath:auth-server.p12
+        key-store-password: changeit
+        key-store-type: PKCS12
+        key-alias: auth-server
+
 spring:
     application.name: idp
 
@@ -17,9 +25,9 @@ spring:
                         - "authorization_code"
                         - "refresh_token"
                     redirect-uris:
-                        - "http://localhost:8080/login/oauth2/code/oidc-client"
+                        - "https://localhost:8443/login/oauth2/code/oidc-client"
                     post-logout-redirect-uris:
-                        - "http://localhost:8080/"
+                        - "https://localhost:8443/"
                     scopes:
                         - "openid"
                         - "profile"
