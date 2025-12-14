@@ -1,33 +1,30 @@
 server:
-    port: 8443
-    ssl:
-        key-store: classpath:auth-server.p12
-        key-store-password: changeit
-        key-store-type: PKCS12
-        key-alias: auth-server
+  port: 8443
+  ssl:
+    key-store: classpath:auth-server.p12
+    key-store-password: changeit
+    key-store-type: PKCS12
+    key-alias: auth-server
 
 spring:
-    application.name: idp
+  application.name: idp
 
-    security:
-        user:
-            name: user
-            password: password
-        oauth2.authorizationserver.client:
-            oidc-client:
-                require-authorization-consent: true
-                registration:
-                    client-id: "oidc-client"
-                    client-secret: "{noop}secret"
-                    client-authentication-methods:
-                        - "client_secret_basic"
-                    authorization-grant-types:
-                        - "authorization_code"
-                        - "refresh_token"
-                    redirect-uris:
-                        - "https://localhost:8443/login/oauth2/code/oidc-client"
-                    post-logout-redirect-uris:
-                        - "https://localhost:8443/"
-                    scopes:
-                        - "openid"
-                        - "profile"
+  security:
+    oauth2.authorizationserver.client:
+      oidc-client:
+        require-authorization-consent: true
+        registration:
+          client-id: "oidc-client"
+          client-secret: "{noop}secret"
+          client-authentication-methods:
+            - "client_secret_basic"
+          authorization-grant-types:
+            - "authorization_code"
+            - "refresh_token"
+          redirect-uris:
+            - "https://localhost:8443/login/oauth2/code/oidc-client"
+          post-logout-redirect-uris:
+            - "https://localhost:8443/"
+          scopes:
+            - "openid"
+            - "profile"
